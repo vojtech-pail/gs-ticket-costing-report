@@ -15,3 +15,17 @@ I have decided to use:
 * `cron` job to run the python script automatically and periodically
 
 ## Solution in detail
+The following sections describe the solution in more detail.
+
+### 1) Setting up access tokens for authentication with APIs
+#### Google Cloud Platform
+* Set up a project in Google Cloud Platform console and allow Google Sheets API
+* Create service account that will edit the Google Sheet document
+  * The document had to be shared with this account and (with editor rights)
+
+#### ASANA
+* Create Personal Access Token
+*I have included the fake ASANA's PAT directly in the `const.py` file for the demonstration purposes only. The recommended solution is to have this secret stored in an environment variable.*
+
+### 2) Extracting the list of developers
+In order to 
