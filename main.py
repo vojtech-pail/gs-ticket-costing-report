@@ -50,7 +50,7 @@ for client in master_client_list:
             assignees_l.append(functions.assignees_per_task_information_list(row['Task ID']))
 
         # Join tasks DataFrame with assignees
-        assignees_df = pd.DataFrame(data=assignees_l, columns=['Task ID', 'Indigo assignees', 'Assignees'])
+        assignees_df = pd.DataFrame(data=assignees_l, columns=['Task ID', 'Assignees'])
         df_tasks = df_tasks.merge(assignees_df, on='Task ID', how='left')
 
         # Write dataframe to client's google sheet
