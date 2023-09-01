@@ -3,6 +3,8 @@ This is a demo* version of an analytical project, whose purpose was to provide a
   
 **The access tokens and GIDs were replaced with fake data and the content of the Google Sheets report was artificially generated.*
 
+The demo report is at the following address: [Google Sheets Ticket Analysis Report](https://docs.google.com/spreadsheets/d/1OBRlCNfwH5wlEW07zCX-Yo5hc6a5kOhKRX-ZZCvMNV8/edit?usp=sharing)
+
 ## The business need
 The whole project evolved from the need to have a tool that could be used as a basis for invoicing our customers for support and developments tickets. These tickets were managed in ASANA and mixed with other tasks that were considered out-of-scope for the invoicing. Separation of the in-scope and out-of-scope tickets was not possible directly in ASANA and therefore it required custom approach. A task was considered in-scope if it was assigned to a member of development team in any point in time in the task's history.
 
@@ -64,11 +66,21 @@ Code inside the `main.py` file has the following procedural logic:
 ## The report structure
 There are two groups of sheets in every report - first group consists of those used for analysis ("frontend" sheets) and second group is used as a support to the first group ("backend" sheets - hidden in the production versions). All sheets are visible in this demo report.
 ### "Frontend" sheets
+#### *Cost Overview*
+* Main sheet with the ticket cost analysis
+* There are two key sections:
+    * Analysis for specified period and project (columns `E:G`)
+    * Analysis for all-time records and all projects (columns `H:J`)
+* Each section has three columns - one for each category of ticket's urgency
+* On the right side, there is a column chart that can be modifed with number of months to display and specifying a project (independently on the analysis section)
 
+#### *Rates*
+* Rates which are used in the ticket pricing model
+* All the calculations on the *Cost Overview* sheet have references to this sheet so if a change is made here, it is automatically reflected on the *Cost Overview* sheet
 
 ### "Backend" sheets
 * *Config* - ASANA project IDs to be included in the report (columns `A:B`) and other setting and validation fields for the "frontend" sheets
 * *Data* - Raw data imported using the python script and calculated columns (columns `J:Q`) using various formulas
 * *Data Filtered* - Raw data filtered using the filtering criterias on the *Cost Overview* sheet (cells `E5`, `E6` and `E7`) for restricting the period and projects included in the analysis
 * *Graph Data* - Raw data filtered using the filtering criteria on the *Cost Overview* sheet (cell `P10`) for restricting the projects displayed
-* *Graph Data Summarized* - Pivot tables made from the *Graph Data* sheet data
+* *Graph Data Summarized* - Pivot tables from the *Graph Data* sheet data and summarized data used as a data source for the graph on the *Cost Overview* sheet
