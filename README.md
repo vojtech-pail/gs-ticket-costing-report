@@ -48,18 +48,27 @@ Code inside the `main.py` file has the following procedural logic:
 1. Variables initialization - dates and log
 2. Importing data about clients from the config file
 3. Iterating over the list of clients acquired in previous step
-  1. Connecting to the client's Google Sheets report
-  2. Fetching data about ASANA projects associated with the client from the config sheet of the report
-  3. Removing all the data from the data sheet*
-  4. Iterating over the list of ASANA projects for the given client - **the core extraction and transformation logic**
-     1. Getting all the tasks from the project
-     2. Getting all the historical assignees for each task
-     3. Flagging tasks with assignees from the `dev_team.csv` file
-     4. Write the data to the client's Google Sheets
-  5. Report formatting and cleanup routines
+    1. Connecting to the client's Google Sheets report
+    2. Fetching data about ASANA projects associated with the client from the config sheet of the report
+    3. Removing all the data from the data sheet*
+    4. Iterating over the list of ASANA projects for the given client - **the core extraction and transformation logic**
+        1. Getting all the tasks from the project
+        2. Getting all the historical assignees for each task
+        3. Flagging tasks with assignees from the `dev_team.csv` file
+        4. Write the data to the client's Google Sheets
+    5. Report formatting and cleanup routines
 4. Inserting log into the config Gooogle Sheets document
 
 **It was necessary to fetch data for all tasks everytime, becasue we could not reliably tell which tasks were not modified after being closed. Therefore incremental updates were not possible.*
 
 ## The report structure
+There are two groups of sheets in every report - first group consists of those used for analysis ("frontend" sheets) and second group is used as a support to the first group ("backend" sheets - hidden in the production versions). All sheets are visible in this demo report.
+### "Frontend" sheets
 
+
+### "Backend" sheets
+* *Config* - ASANA project IDs to be included in the report (columns `A:B`) and other setting and validation fields for the "frontend" sheets
+* *Data* - Raw data imported using the python script and calculated columns (columns `J:Q`) using various formulas
+* *Data Filtered* - Raw data filtered using the filtering criterias on the *Cost Overview* sheet (cells `E5`, `E6` and `E7`) for restricting the period and projects included in the analysis
+* *Graph Data* - Raw data filtered using the filtering criteria on the *Cost Overview* sheet (cell `P10`) for restricting the projects displayed
+* *Graph Data Summarized* - Pivot tables made from the *Graph Data* sheet data
