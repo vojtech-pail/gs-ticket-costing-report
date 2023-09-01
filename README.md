@@ -6,7 +6,7 @@ This is a demo* version of an analytical project, whose purpose was to provide a
 The demo report is at the following address: [Google Sheets Ticket Analysis Report](https://docs.google.com/spreadsheets/d/1OBRlCNfwH5wlEW07zCX-Yo5hc6a5kOhKRX-ZZCvMNV8/edit?usp=sharing)
 
 ## The business need
-The whole project evolved from the need to have a tool that could be used as a basis for invoicing our customers for support and development tickets. These tickets were managed in ASANA and mixed with other tasks that were considered out-of-scope for the invoicing. Separation of the in-scope and out-of-scope tickets was not possible directly in ASANA and therefore it required custom approach. A task was considered in-scope if it was assigned to a member of development team in any point in time in the task's history.
+The whole project evolved from the need to have a tool that could be used as a basis for invoicing our customers for support and development tickets. These tickets were managed in ASANA and mixed with other tasks that were considered out-of-scope for the invoicing. Separation of in-scope and out-of-scope tickets was not possible directly in ASANA and therefore it required custom approach. A task was considered in-scope if it was assigned to a member of development team in any point in time in the task's history.
 
 ## Overview of the solution
 I have decided to use:
@@ -23,17 +23,16 @@ The following sections describe the solution in more detail.
 
 ### 1) Setting up access tokens for authentication with APIs
 #### Google Cloud Platform
-* Set up a project in Google Cloud Platform console and allow Google Sheets API
-* Create service account that will edit the Google Sheets document
-  * The document had to be shared with this account and (with editor rights)
+* Setting up a project in Google Cloud Platform console and allowing Google Sheets API
+* Creating service account that would edit the Google Sheets document
 
 #### ASANA
-* Create Personal Access Token
+* Creating Personal Access Token
 
 *In this demo I have included a fake ASANA's PAT directly in the `const.py` file for the demonstration purposes only. The recommended solution is to have this secret stored in an environment variable.*
 
 ### 2) Extracting the list of developers
-Extracting all the users of ASANA workspace using `users.get_users()` function and selecting only developers. The result was saved to the `dev_team.csv` file (only demo data here).
+Extracting all the users of ASANA workspace using `users.get_users()` function and selecting only developers. The result was saved to the `dev_team.csv` file (again, only demo data here).
 
 ### 3) Setting up a configuration Google Sheets document
 A configuration Google Sheets document was used to store references to the final Google Sheets reports for individual clients in the form of each report's GID (the GID of each report was added after the report was created).
@@ -57,7 +56,7 @@ Code inside the `main.py` file has the following procedural logic:
         1. Getting all the tasks from the project
         2. Getting all the historical assignees for each task
         3. Flagging tasks with assignees from the `dev_team.csv` file
-        4. Write the data to the client's Google Sheets
+        4. Sending the data to the client's Google Sheets
     5. Report formatting and cleanup routines
 4. Inserting log into the config Gooogle Sheets document
 
@@ -76,11 +75,20 @@ There are two groups of sheets in every report - first group consists of those u
 
 #### *Rates*
 * Rates which are used in the ticket pricing model
-* All the calculations on the *Cost Overview* sheet have references to this sheet so if a change is made here, it is automatically reflected on the *Cost Overview* sheet
+* All the calculations on the *Cost Overview* sheet have references to this sheet so if a change is made here, it is automatically reflected in the *Cost Overview* sheet
 
 ### "Backend" sheets
-* *Config* - ASANA project IDs to be included in the report (columns `A:B`) and other setting and validation fields for the "frontend" sheets
-* *Data* - Raw data imported using the python script and calculated columns (columns `J:Q`) using various formulas
-* *Data Filtered* - Raw data filtered using the filtering criterias on the *Cost Overview* sheet (cells `E5`, `E6` and `E7`) for restricting the period and projects included in the analysis
-* *Graph Data* - Raw data filtered using the filtering criteria on the *Cost Overview* sheet (cell `P10`) for restricting the projects displayed
-* *Graph Data Summarized* - Pivot tables from the *Graph Data* sheet data and summarized data used as a data source for the graph on the *Cost Overview* sheet
+#### *Config*
+ASANA project IDs to be included in the report (columns `A:B`) and other setting and validation fields for the "frontend" sheets.
+
+#### *Data*
+Raw data imported using the python script and calculated columns (columns `J:Q`) using various formulas.
+
+#### *Data Filtered*
+Raw data filtered using the filtering criterias on the *Cost Overview* sheet (cells `E5`, `E6` and `E7`) for restricting the period and projects included in the analysis.
+
+#### *Graph Data*
+Raw data filtered using the filtering criteria on the *Cost Overview* sheet (cell `P10`) for restricting the projects displayed.
+
+#### *Graph Data Summarized*
+Pivot tables from the *Graph Data* sheet data and summarized data used as a data source for the graph on the *Cost Overview* sheet.
