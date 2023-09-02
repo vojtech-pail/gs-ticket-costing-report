@@ -1,3 +1,5 @@
+![Schema of data transfers](/assets/tech_schema.png "Schema of data transfers")
+
 # Analysis of ASANA tickets in Google Sheets
 This is a demo* version of an analytical project, whose purpose was to provide a certain level of detail about ASANA tasks, that wasn't possible using the ASANA's built-in analytical features.
   
