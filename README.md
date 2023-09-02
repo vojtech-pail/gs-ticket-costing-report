@@ -42,7 +42,9 @@ Extracting all the users of ASANA workspace using `users.get_users()` function a
 ### 3) Setting up a configuration Google Sheets document
 A configuration Google Sheets document was used to store references to the final Google Sheets reports for individual clients in the form of each report's GID (the GID of each report was added after the report was created).
 
-![The columns of the config Google Sheets document](/assets/config_clients_page.png "Config Google Sheets' columns")
+| ![The columns of the config Google Sheets document](/assets/config_clients_page.png "Config Google Sheets' columns") |
+|:--:|
+| *The columns of the config Google Sheets document* |
 
 ### 4) Creating ETL script
 There are three python files:
