@@ -10,7 +10,9 @@ The whole project evolved from the need to have a tool that could be used as a b
 
 ## Overview of the solution
 
-![Schema of data transfers](/assets/tech_schema.png "Schema of data transfers")
+| ![Schema of data transfers](/assets/tech_schema.png "Schema of data transfers") |
+|:--:|
+| *Schema of data transfers* |
 
 I have decided to use:
 * ASANA's API to access the data of the tickets (using `asana` python library)
