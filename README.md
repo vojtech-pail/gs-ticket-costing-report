@@ -1,9 +1,9 @@
 # Analysis of ASANA tickets in Google Sheets
 This is a demo* version of an analytical project, whose purpose was to provide a certain level of detail about ASANA tasks, that wasn't possible using the ASANA's built-in analytical features.
-  
-**The access tokens, GIDs and Google Sheets report contents were replaced with dummy data.*
 
 The demo Google Sheets report: [Google Sheets Ticket Analysis Report](https://docs.google.com/spreadsheets/d/1OBRlCNfwH5wlEW07zCX-Yo5hc6a5kOhKRX-ZZCvMNV8/edit?usp=sharing)
+
+**The access tokens, GIDs and Google Sheets report contents were replaced with dummy data.*
 
 ## The business need
 The whole project evolved from the need to have a tool that could be used as a basis for invoicing our customers for support and development tickets. These tickets were managed in ASANA and mixed with other tasks that were considered out-of-scope for the invoicing. Separation of in-scope and out-of-scope tickets was not possible directly in ASANA and therefore it required custom approach. A task was considered in-scope if it was assigned to a member of development team in any point in time in the task's history.
